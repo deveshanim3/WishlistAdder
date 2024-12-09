@@ -9,14 +9,14 @@ function updateLocalStorage() {
     localStorage.setItem('listItems', JSON.stringify(items));
 }
 
-function loadFromLocalStorage() {
+function loadFromLocalStorage() {                                 
     const storedItems = JSON.parse(localStorage.getItem('listItems')) || [];
     storedItems.forEach((item) => {
         const newDiv = document.createElement('div');
         const newLi = document.createElement('li');
         newDiv.className = 'Mname';
         newDiv.textContent = item;
-        newLi.appendChild(newDiv);
+        newLi.appendChild(newDiv);                         
         ul.append(newLi);
 
         newDiv.addEventListener('dblclick', () => {
@@ -68,10 +68,11 @@ loadFromLocalStorage();
             ul.append(newLi);
             i.remove();
             isInputActive=false;
-
+            updateLocalStorage();
            
             newDiv.addEventListener('dblclick', () => {
                 newDiv.remove();
+                updateLocalStorage();
                 console.log("Test for removal")
             });
         }
